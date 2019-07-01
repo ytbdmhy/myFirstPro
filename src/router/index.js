@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import FirstPage from '@/components/FirstPage'
 import login from '@/views/login/index'
-import secondPage from '@/views/secondPage/index'
-
+import home from '@/views/home/index'
 Vue.use(Router)
 
 export default new Router({
@@ -24,9 +23,9 @@ export default new Router({
       component: login
     },
     {
-      path: '/secondPage',
-      name: 'secondPage',
-      component: secondPage
+      path: '/home',
+      name: 'home',
+      component: home
     }
   ]
 })

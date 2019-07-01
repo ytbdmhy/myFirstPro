@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import {isValidUsername} from '@/utils/validate'
+// import {isValidUsername} from '@/utils/validate'
 import loginToolUrl from '@/assets/images/login_tool.jpg'
 import axios from 'axios'
 // import {getSupport, setSupport} from '@/utils/support'
@@ -52,8 +52,6 @@ export default {
     const validateUsername = (rule, value, callback) => {
       if (value.length === 0) {
         callback(new Error('请输入用户名'))
-      } else if (!isValidUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
       } else {
       }
     }
@@ -83,12 +81,19 @@ export default {
     handleLogin () {
       axios.post('http://localhost:8888/login?username=' + this.loginForm.username + '&password=' + this.loginForm.password)
         .then(response => {
-          this.$router.push({path: '/secondPage'})
-        }).catch(function (error) {
-          console.log(error)
+          console.info(response)
+          if (response.data.code === 200) {
+            this.loading = false
+            this.$router.push({path: '/home'})
+          } else {
+            this.loading = false
+            this.$alert('用户名或密码错误', '', {
+              confirmButtonText: '确定'
+            })
+          }
+        }).catch(response => {
         })
       this.loading = true
-      // this.$router.push({path: '/firstPage'})
     }
   }
 }

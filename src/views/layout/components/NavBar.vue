@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <h2>Second Page</h2>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: 'index'
+  name: 'NavBar'
 }
 </script>
 
